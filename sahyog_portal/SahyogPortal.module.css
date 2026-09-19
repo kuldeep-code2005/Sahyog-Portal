@@ -1,0 +1,404 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap");
+
+/*
+  All rules are scoped under `.wrapper` (which itself gets a unique hash
+  from CSS Modules). This is what makes the component "non-conflicting":
+  - no bare `*` reset (that would hit every element on the host page)
+  - no bare `body` selector (that would hit the host app's <body>)
+  - no generic class names (`.login-form`, `.submit-btn`, etc. are scoped
+    automatically because CSS Modules hashes every className below)
+*/
+
+.wrapper {
+  --spr-navy: #083375;
+  --spr-navy-dark: #052454;
+  --spr-bg: #f6f8fc;
+  --spr-text: #333;
+  --spr-border: #e2e8f0;
+  --spr-input-border: #dbe2ea;
+  --spr-heading: #1a202c;
+  --spr-heading-dark: #0f172a;
+  --spr-label: #475569;
+  --spr-body-text: #1e293b;
+
+  font-family: "Montserrat", "Poppins", "Futura", "Century Gothic", -apple-system, sans-serif;
+  background-color: var(--spr-bg);
+  color: var(--spr-text);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.wrapper *,
+.wrapper *::before,
+.wrapper *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+}
+
+/* ---------- Top Government Bar ---------- */
+
+.topHeader {
+  background-color: var(--spr-navy);
+  color: #fff;
+  padding: 8px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+}
+
+.topHeaderCenter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: 175px; /* Shifts text directly above 3.png */
+}
+
+.govBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1.1;
+}
+
+.govBlock .hindi,
+.mhaBlock .hindi {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.govBlock .eng,
+.mhaBlock .eng {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.headerDivider {
+  width: 1px;
+  height: 28px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.mhaBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.1;
+}
+
+.topHeaderRight {
+  display: flex;
+  align-items: center;
+}
+
+.topHeaderRight a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+/* ---------- Brand / Title Bar ---------- */
+
+.brandHeader {
+  background-color: #ffffff;
+  height: 70px;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--spr-border);
+  position: relative;
+}
+
+.brandLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 100%;
+}
+
+.brandTitleGroup {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.brandTitleGroup .hindiTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--spr-heading);
+}
+
+.brandTitleGroup .engTitle {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--spr-heading-dark);
+}
+
+.headerInlineImg {
+  max-height: 45px;
+  width: auto;
+  object-fit: contain;
+}
+
+.brandSubtitle {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--spr-label);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-left: 1px solid #cbd5e1;
+  padding-left: 16px;
+  line-height: 1.3;
+}
+
+.brandRight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 100%;
+}
+
+.brandRightImg {
+  max-height: 50px;
+  height: auto;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ---------- Main Grid ---------- */
+
+.mainContainer {
+  display: grid;
+  grid-template-columns: 1fr 380px 1fr;
+  gap: 40px;
+  padding: 60px 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* ---------- Left Column: Vision / Mission ---------- */
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  padding-top: 10px;
+}
+
+.sectionBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.headerLineRow {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.blueCircle {
+  width: 28px;
+  height: 28px;
+  background-color: var(--spr-navy);
+  border-radius: 50%;
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.headerTextLabel {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--spr-navy);
+  margin-left: 10px;
+  letter-spacing: 0.8px;
+  background-color: var(--spr-bg);
+  padding-right: 10px;
+  z-index: 2;
+}
+
+.horizontalLine {
+  position: absolute;
+  left: 14px;
+  right: 0;
+  height: 1px;
+  background-color: var(--spr-navy);
+  z-index: 1;
+}
+
+.sectionDescription {
+  font-size: 13.5px;
+  color: var(--spr-body-text);
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+/* ---------- Center Column: Login Card ---------- */
+
+.loginCard {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  padding-bottom: 24px;
+  border: 1px solid var(--spr-border);
+}
+
+.loginHeaderBanner {
+  height: 120px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.loginHeaderBanner h2 {
+  color: #000000;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin-top: -10px;
+}
+
+.loginForm {
+  padding: 0 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 14px;
+  width: 16px;
+  height: 16px;
+  fill: var(--spr-navy);
+}
+
+.inputWrapper input {
+  width: 100%;
+  padding: 12px 12px 12px 42px;
+  border: 1px solid var(--spr-input-border);
+  border-radius: 6px;
+  font-size: 13px;
+  outline: none;
+}
+
+.inputWrapper input:focus {
+  border-color: var(--spr-navy);
+}
+
+.captchaContainer {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.captchaBox {
+  border: 1px solid var(--spr-input-border);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 2px;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+}
+
+.captchaRefreshBtn {
+  cursor: pointer;
+  color: var(--spr-navy);
+  border: none;
+  background: transparent;
+  font-size: 14px;
+}
+
+.captchaInput {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid var(--spr-input-border);
+  border-radius: 4px;
+  font-size: 13px;
+  outline: none;
+}
+
+.submitBtn {
+  background-color: var(--spr-navy);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.submitBtn:hover {
+  background-color: var(--spr-navy-dark);
+}
+
+.forgotLink {
+  display: inline-block;
+  color: var(--spr-navy);
+  font-size: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 10px;
+  padding-left: 28px;
+}
+
+/* ---------- Right Column ---------- */
+
+.rightColumn {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--spr-body-text);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+
+.shieldWrapper {
+  margin-top: 36px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 30px;
+}
+
+.shieldImg {
+  max-height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ---------- Footer ---------- */
+
+.footerStrip {
+  background-color: var(--spr-navy);
+  height: 12px;
+  margin-top: auto;
+}

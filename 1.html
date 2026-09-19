@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sahyog Portal - Government of India</title>
+
+  <!-- Google Fonts import for Geometric Sans-Serif (Montserrat & Poppins) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Clean Separated CSS -->
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+  <!-- Top Dark Blue Nav Bar -->
+  <div class="top-header">
+    <div class="top-header-center">
+      <div class="gov-block">
+        <span class="hindi">भारत सरकार</span>
+        <span class="eng">GOVERNMENT OF INDIA</span>
+      </div>
+      <div class="header-divider"></div>
+      <div class="mha-block">
+        <span class="hindi">गृह मंत्रालय</span>
+        <span class="eng">MINISTRY OF HOME AFFAIRS</span>
+      </div>
+    </div>
+
+    <div class="top-header-right">
+      <a href="pdf/Nodal_officer_list.pdf" target="_blank">Contact Details of the Authorized Officers</a>
+    </div>
+  </div>
+
+  <!-- Main Title Bar -->
+  <header class="brand-header">
+    <div class="brand-left">
+      <div class="brand-title-group">
+        <span class="hindi-title">सहयोग पोर्टल</span>
+        <span class="eng-title">Sahyog Portal</span>
+      </div>
+
+      <img src="3.png" alt="Logo 3" class="header-inline-img">
+      <img src="4.png" alt="Logo 4" class="header-inline-img">
+
+      <div class="brand-subtitle">
+        ELECTRONICS AND<br>INFORMATION TECHNOLOGY
+      </div>
+    </div>
+    
+    <div class="brand-right">
+      <img src="6.png" alt="Logo 6" class="brand-right-img">
+      <img src="2.png" alt="Logo 2" class="brand-right-img">
+    </div>
+  </header>
+
+  <!-- Content Grid -->
+  <main class="main-container">
+    
+    <!-- Left Column -->
+    <section class="left-column">
+      <div class="section-block">
+        <div class="header-line-row">
+          <div class="blue-circle"></div>
+          <span class="header-text-label">VISION</span>
+          <div class="horizontal-line"></div>
+        </div>
+        <p class="section-description">To create a safe cyber space for the citizens of India.</p>
+      </div>
+
+      <div class="section-block">
+        <div class="header-line-row">
+          <div class="blue-circle"></div>
+          <span class="header-text-label">MISSION</span>
+          <div class="horizontal-line"></div>
+        </div>
+        <p class="section-description">
+          To create an effective framework and ecosystem for the prevention, detection, investigation, and prosecution of Cybercrime in the country .
+        </p>
+      </div>
+    </section>
+
+    <!-- Center Column: Login Box -->
+    <section class="login-card">
+      <div class="login-header-banner">
+        <h2>LOGIN</h2>
+      </div>
+      <form class="login-form" id="loginForm" autocomplete="off">
+        <div id="authMessageContainer" class="auth-message"></div>
+
+        <div class="input-wrapper">
+          <svg class="input-icon" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          <input type="text" name="txtuseridothers" id="txtuseridothers" placeholder="Enter User ID" required autofocus>
+        </div>
+
+        <div class="input-wrapper">
+          <svg class="input-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+          <input type="password" name="TxtPWD" id="TxtPWD" placeholder="Password" required>
+        </div>
+
+        <div class="captcha-container">
+          <div class="captcha-box">
+            <span id="captchaDisplay">p56CZG</span>
+            <button type="button" class="captcha-refresh-btn" id="btnRefreshCaptcha" title="Refresh Captcha">&#8635;</button>
+          </div>
+          <input type="text" class="captcha-input" name="txtcapcha" id="txtcapcha" placeholder="Enter captcha" required autocomplete="off">
+        </div>
+
+        <button type="submit" class="submit-btn" id="btnLogin">Login</button>
+      </form>
+      <a href="pages/ResetPassword.aspx" class="forgot-link" id="anchorforgetpassword" onclick="alert('Password reset link is sent to the registered nodal officer email.'); return false;">Forgot Password?</a>
+
+      <!-- Subtle Test Credentials Helper -->
+      <div class="demo-hint-container">
+        <div class="demo-hint-box">
+          <span>Demo ID: <strong>officer@sahyog.gov.in</strong> / <strong>Sahyog@2026</strong></span>
+          <button type="button" class="demo-fill-btn" id="btnDemoFill" title="Auto-fill credentials">Auto Fill</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Column -->
+    <section class="right-column">
+      <p>
+        <strong>'Sahyog' Portal</strong> has been developed to automate the process of sending notices to intermediaries by the Appropriate Government or its agency under IT Act, 2000 to facilitate the removal or disabling of access to any information, data or communication link being used to commit an unlawful act. It will bring together all Authorized Agencies of the country and all the intermediaries on one platform for ensuring immediate action against the unlawful online information. This portal will help achieve a safe cyber space for the Citizens of India.
+      </p>
+
+      <div class="shield-wrapper">
+        <img src="5.png" alt="Shield Logo" class="shield-img">
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer-strip"></footer>
+
+  <!-- Separated JavaScript Modules -->
+  <script src="js/captcha.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

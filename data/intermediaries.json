@@ -1,0 +1,112 @@
+[
+  {
+    "id": "binance",
+    "name": "Binance Holdings Ltd (Global Centralized Exchange)",
+    "category": "Virtual Asset Service Provider (VASP)",
+    "fiuStatus": "FIU-IND Registered Entity (Registration Ref: FIU-IND/VASP-002)",
+    "nodalOfficer": "Head of Global Law Enforcement Investigations",
+    "email": "case@binance.com",
+    "address": "Binance Global LEA Response Desk, Cayman Islands / Regulatory Compliance Hub",
+    "slaHours": 2,
+    "defaultRelief": ["Immediate Asset Freeze", "Beneficial Owner KYC", "IP Access Logs", "P2P Off-Ramp Bank Details"]
+  },
+  {
+    "id": "coindcx",
+    "name": "CoinDCX (Neblio Technologies Pvt Ltd)",
+    "category": "FIU-IND Registered Indian VASP",
+    "fiuStatus": "FIU-IND Registered VASP (Compliance Ref: FIU-IND/VASP-001)",
+    "nodalOfficer": "Chief Compliance & Nodal Officer (Law Enforcement Support)",
+    "email": "lea@coindcx.com",
+    "address": "4th Floor, Tower B, Prestige Tech Park, Marathahalli, Bengaluru, Karnataka - 560103",
+    "slaHours": 2,
+    "defaultRelief": ["Immediate Asset Freeze", "Full KYC (Aadhaar/PAN)", "Bank Withdrawal Records", "IP Access Logs"]
+  },
+  {
+    "id": "wazirx",
+    "name": "WazirX (Zanmai Labs Pvt Ltd)",
+    "category": "FIU-IND Registered Indian VASP",
+    "fiuStatus": "FIU-IND Registered VASP (Ref: FIU-IND/VASP-004)",
+    "nodalOfficer": "Grievance Officer & LEA Compliance Liaison",
+    "email": "nodal@wazirx.com",
+    "address": "Crowne Plaza, 5th Floor, Bandra Kurla Complex, Mumbai, Maharashtra - 400051",
+    "slaHours": 2,
+    "defaultRelief": ["Immediate Asset Freeze", "Full KYC Records", "Linked Indian Bank Accounts", "180 Days Log Preservation"]
+  },
+  {
+    "id": "coinswitch",
+    "name": "CoinSwitch Kuber (Bitcipher Labs LLP)",
+    "category": "FIU-IND Registered Indian VASP",
+    "fiuStatus": "FIU-IND Registered VASP (Ref: FIU-IND/VASP-005)",
+    "nodalOfficer": "Nodal Compliance Officer (Cybercrime & LEA Desk)",
+    "email": "compliance.lea@coinswitch.co",
+    "address": "Prathik Tech Park, Outer Ring Road, Bellandur, Bengaluru, Karnataka - 560103",
+    "slaHours": 2,
+    "defaultRelief": ["Immediate Asset Freeze", "Aadhaar/PAN KYC", "INR Bank Transfer Trails", "Device Fingerprints"]
+  },
+  {
+    "id": "zebpay",
+    "name": "ZebPay (Awlencan Innovations India Ltd)",
+    "category": "FIU-IND Registered Indian VASP",
+    "fiuStatus": "FIU-IND Registered VASP (Ref: FIU-IND/VASP-003)",
+    "nodalOfficer": "General Manager & Nodal Officer (Cyber Cell Liaison)",
+    "email": "compliance@zebpay.com",
+    "address": "Mondeal Heights, Near Wide Angle, S.G. Highway, Ahmedabad, Gujarat - 380015",
+    "slaHours": 2,
+    "defaultRelief": ["Immediate Asset Freeze", "KYC & Bank Withdrawal Details", "IPDR Logs"]
+  },
+  {
+    "id": "mudrex",
+    "name": "Mudrex (Mudrex Financial India Pvt Ltd)",
+    "category": "FIU-IND Registered Indian VASP",
+    "fiuStatus": "FIU-IND Registered VASP (Ref: FIU-IND/VASP-008)",
+    "nodalOfficer": "Resident Compliance & Grievance Officer",
+    "email": "support-lea@mudrex.com",
+    "address": "Salarpuria Sattva, Hosur Road, Bengaluru, Karnataka - 560068",
+    "slaHours": 4,
+    "defaultRelief": ["Immediate Asset Freeze", "KYC Information", "Audit Logs"]
+  },
+  {
+    "id": "bybit",
+    "name": "Bybit Fintech Limited (Centralized Exchange)",
+    "category": "Virtual Asset Service Provider (VASP)",
+    "fiuStatus": "International Exchange (Offshore Compliance Desk)",
+    "nodalOfficer": "Bybit Law Enforcement Requisition Team",
+    "email": "lawenforcement@bybit.com",
+    "address": "Level 11, One Central, Dubai World Trade Centre, Dubai, UAE",
+    "slaHours": 4,
+    "defaultRelief": ["Deposit Wallet Freeze", "Account Suspension", "Full KYC", "IP Logs"]
+  },
+  {
+    "id": "kucoin",
+    "name": "KuCoin Exchange (Mek Global Limited)",
+    "category": "Virtual Asset Service Provider (VASP)",
+    "fiuStatus": "FIU-IND Registered Entity (Ref: FIU-IND/VASP-007)",
+    "nodalOfficer": "Global Legal Enforcement Operations",
+    "email": "lea@kucoin.com",
+    "address": "Suite 201, 2nd Floor, Eden Plaza, Eden Island, Mahé, Seychelles",
+    "slaHours": 4,
+    "defaultRelief": ["Account Debit Freeze", "User KYC Data", "Login Timestamps & IPs"]
+  },
+  {
+    "id": "okx",
+    "name": "OKX Exchange (Aux Cayes FinTech Co. Ltd)",
+    "category": "Virtual Asset Service Provider (VASP)",
+    "fiuStatus": "Global Centralized Exchange",
+    "nodalOfficer": "OKX Law Enforcement Operations Team",
+    "email": "enforcement@okx.com",
+    "address": "Seychelles & Global Regulatory Operations Centre",
+    "slaHours": 4,
+    "defaultRelief": ["Wallet Freeze", "Beneficial Ownership Disclosure", "Transaction Ledger"]
+  },
+  {
+    "id": "kraken",
+    "name": "Kraken (Payward, Inc.)",
+    "category": "Virtual Asset Service Provider (VASP)",
+    "fiuStatus": "Global Custodial Exchange & Trading Platform",
+    "nodalOfficer": "Kraken Compliance & LEA Subpoena Desk",
+    "email": "subpoena@kraken.com",
+    "address": "237 Kearny Street #102, San Francisco, CA 94108, USA",
+    "slaHours": 6,
+    "defaultRelief": ["Immediate Asset Freeze", "Subpoena KYC Records", "Linked Banking Details"]
+  }
+]

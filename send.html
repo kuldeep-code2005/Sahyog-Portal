@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sahyog Portal - Statutory Intermediary & VASP Requisition Gateway | Government of India</title>
+
+  <!-- Google Fonts import for Geometric Sans-Serif (Montserrat & Poppins) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN for utility acceleration -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sahyog: {
+              navy: '#083375',
+              darkNavy: '#052454',
+              lightBlue: '#eef3fc',
+              accent: '#0284c7'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Clean Separated CSS -->
+  <link rel="stylesheet" href="css/send.css">
+
+  <!-- Security Auth Guard: Immediate Access Check -->
+  <script src="js/auth-guard.js"></script>
+</head>
+<body>
+
+  <!-- Top Dark Blue Official Bar -->
+  <div class="sahyog-top-bar">
+    <div class="sahyog-top-center">
+      <div class="sahyog-gov-text text-right">
+        <span class="hindi">भारत सरकार</span>
+        <span class="eng">GOVERNMENT OF INDIA</span>
+      </div>
+      <div class="sahyog-divider"></div>
+      <div class="sahyog-gov-text text-left">
+        <span class="hindi">गृह मंत्रालय</span>
+        <span class="eng">MINISTRY OF HOME AFFAIRS</span>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-4 text-xs font-medium">
+      <span class="hidden md:inline-flex items-center gap-1 text-emerald-300">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        SECURE LEA GATEWAY (ENCRYPTED TLS 1.3)
+      </span>
+      <span class="hidden sm:inline text-slate-300">|</span>
+      <a href="pdf/Nodal_officer_list.pdf" target="_blank" class="text-white hover:underline">Authorized Officers Directory</a>
+    </div>
+  </div>
+
+  <!-- Main Sahyog Brand & Officer Session Bar -->
+  <header class="sahyog-brand-bar">
+    <div class="brand-logos-cluster">
+      <div class="brand-title-box">
+        <span class="hindi-main">सहयोग पोर्टल</span>
+        <span class="eng-main">Sahyog Portal</span>
+      </div>
+
+      <img src="3.png" alt="Emblem of India" class="h-10">
+      <img src="4.png" alt="MHA Logo" class="h-10">
+
+      <div class="hidden lg:block text-[10px] font-bold text-slate-600 uppercase border-l border-slate-300 pl-3 leading-tight tracking-wider">
+        ELECTRONICS AND<br>INFORMATION TECHNOLOGY
+      </div>
+
+      <img src="6.png" alt="DoT Logo" class="hidden sm:block h-10">
+      <img src="2.png" alt="I4C Logo" class="h-10">
+    </div>
+
+    <!-- Active Authorized Officer Session Pill -->
+    <div class="officer-session-card">
+      <div class="officer-avatar">
+        <span>IO</span>
+      </div>
+      <div class="officer-info-col">
+        <span class="name officer-name">Dr. Rajesh Kumar Sharma, IPS</span>
+        <span class="meta officer-designation">Joint Director & Authorized Officer</span>
+        <span class="meta text-[9px] text-blue-800 font-semibold officer-badge">ID: I4C-LE-2026</span>
+      </div>
+      <button type="button" class="btn-signout" id="btnLogoutHeader" title="Sign out securely">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+        </svg>
+        <span>Logout</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Secondary Navigation / Tabs Bar -->
+  <nav class="portal-subnav">
+    <div class="nav-tabs-group">
+      <button type="button" class="nav-tab-btn active" data-tab="tabNoticeForm">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        <span>Issue Statutory Notice (VASP Requisition)</span>
+      </button>
+
+      <button type="button" class="nav-tab-btn" data-tab="tabLedger">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+        </svg>
+        <span>Notice Dispatch Ledger & Tracker</span>
+        <span class="tab-badge" id="ledgerCountBadge">0</span>
+      </button>
+
+      <button type="button" class="nav-tab-btn" data-tab="tabDirectory">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+        <span>Virtual Asset Service Providers (VASPs) Directory</span>
+      </button>
+    </div>
+
+    <div class="hidden md:flex items-center text-xs font-semibold text-slate-500 py-2">
+      <span>Portal Node: I4C-VASP-GATEWAY-01</span>
+    </div>
+  </nav>
+
+  <!-- Main Body Content Container -->
+  <main class="portal-container">
+
+    <!-- =========================================================================
+         TAB 1: ISSUE STATUTORY NOTICE FORM (VASP REQUISITION)
+         ========================================================================= -->
+    <div id="tabNoticeForm" class="tab-content-panel">
+
+      <!-- Official Banner Info Note -->
+      <div class="bg-blue-50 border-l-4 border-sahyog-navy p-4 rounded-r-lg mb-6 shadow-sm">
+        <div class="flex items-start">
+          <div class="flex-shrink-0">
+            <svg class="h-5 w-5 text-sahyog-navy" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="ml-3">
+            <h3 class="text-xs font-bold text-sahyog-navy uppercase tracking-wider">Virtual Asset Service Provider (VASP) Requisition Gateway</h3>
+            <p class="text-xs text-slate-700 mt-1 leading-relaxed">
+              This automated gateway facilitates the issuance of lawful information disclosure, asset freezing, and KYC requisitions to <strong>Virtual Asset Service Providers (VASPs)</strong> such as crypto exchanges, custodial wallet services, and trading platforms under <strong>Section 106 BNSS / Section 102 CrPC</strong>, <strong>Section 94 BNSS / Section 91 CrPC</strong>, and <strong>Section 79(3)(b)</strong> of the Information Technology Act, 2000.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- The Core Form Card -->
+      <div class="form-card">
+        <div class="card-header-bar">
+          <h2>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
+            </svg>
+            <span>Virtual Asset Service Provider (VASP) Requisition & Asset Freezing Order Form</span>
+          </h2>
+          <div class="ref-pill">Notice Ref: <span id="refNoticePill">MHA/I4C/2026/SEC79-0000</span></div>
+        </div>
+
+        <form id="noticeForm" class="card-body-section" autocomplete="off">
+
+          <!-- Section 1: Requisition Metadata -->
+          <div class="section-legend">
+            <span class="legend-icon">1</span>
+            <span>Statutory Authority & Priority Classification</span>
+          </div>
+
+          <div class="grid-form">
+            <div class="form-field">
+              <label for="txtNoticeId">
+                <span>System Notice Reference Number</span>
+                <span class="required-star">*</span>
+              </label>
+              <input type="text" id="txtNoticeId" class="form-input font-mono font-bold text-blue-950" readonly>
+            </div>
+
+            <div class="form-field">
+              <label for="selectStatute">
+                <span>Statutory Authority / Legal Section</span>
+                <span class="required-star">*</span>
+              </label>
+              <select id="selectStatute" class="form-select" required>
+                <option value="Section 106 BNSS 2023 / Section 102 CrPC & Section 79(3)(b) IT Act 2000" selected>Section 106 BNSS / Section 102 CrPC & Sec 79(3)(b) IT Act (Notice to VASP for Asset Freezing)</option>
+                <option value="Section 94 BNSS 2023 / Section 91 CrPC (Production of KYC, Device & IP Logs)">Section 94 BNSS 2023 / Section 91 CrPC (Production of KYC, Device & IP Logs from VASP)</option>
+                <option value="Section 79(3)(b) IT Act 2000 (Notice to VASP for Removal / Disabling Access)">Section 79(3)(b) IT Act 2000 (Notice to VASP for Disabling / Removal of Unlawful Link)</option>
+                <option value="Section 69A IT Act 2000 (Emergency Blocking Order)">Section 69A IT Act 2000 (Emergency Blocking Order)</option>
+                <option value="Section 12 Prevention of Money Laundering Act (PMLA) 2002">Section 12 PMLA 2002 (STR / Laundering Audit Requisition)</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="selectUrgency">
+                <span>Urgency SLA & Compliance Window</span>
+                <span class="required-star">*</span>
+              </label>
+              <select id="selectUrgency" class="form-select" required>
+                <option value="Emergency Asset Freezing (2 Hours SLA)">Emergency Asset Freezing (2 Hours SLA)</option>
+                <option value="High Priority (Active Scam / Extortion) - 6 Hours SLA">High Priority (Active Fraud / Extortion) - 6 Hours SLA</option>
+                <option value="Statutory Standard (24 Hours SLA)" selected>Statutory Standard (24 Hours SLA)</option>
+                <option value="Preservation Only (36 Hours SLA)">Preservation Requisition (36 Hours SLA)</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="txtCrimeNumber">
+                <span>Linked NCRP Cybercrime Ref / FIR No.</span>
+              </label>
+              <input type="text" id="txtCrimeNumber" class="form-input" placeholder="e.g. NCRP/2026/894012 or FIR No. 120/2026 Cyber PS">
+            </div>
+          </div>
+
+          <!-- Section 2: Issuing Authority Details -->
+          <div class="section-legend">
+            <span class="legend-icon">2</span>
+            <span>Issuing Law Enforcement Agency & Officer Particulars</span>
+          </div>
+
+          <div class="grid-form">
+            <div class="form-field">
+              <label>Designated Law Enforcement Agency</label>
+              <input type="text" class="form-input officer-agency" readonly value="Indian Cyber Crime Coordination Centre (I4C)">
+            </div>
+
+            <div class="form-field">
+              <label>Authorized Nodal Officer Name & Rank</label>
+              <input type="text" class="form-input officer-name" readonly value="Dr. Rajesh Kumar Sharma, IPS">
+            </div>
+
+            <div class="form-field">
+              <label>Officer Designation & Jurisdiction</label>
+              <input type="text" class="form-input officer-designation" readonly value="Joint Director & Authorized Officer">
+            </div>
+
+            <div class="form-field">
+              <label>Official Gov.in / Nic.in Email</label>
+              <input type="text" class="form-input officer-email" readonly value="officer@sahyog.gov.in">
+            </div>
+          </div>
+
+          <!-- Section 3: Target VASP & Compliance Desk -->
+          <div class="section-legend">
+            <span class="legend-icon">3</span>
+            <span>Target Virtual Asset Service Provider (VASP) & Compliance Desk</span>
+          </div>
+
+          <div class="grid-form">
+            <div class="form-field md:col-span-2">
+              <label for="selectIntermediary">
+                <span>Select Target Virtual Asset Service Provider (VASP) / Crypto Exchange</span>
+                <span class="required-star">*</span>
+              </label>
+              <select id="selectIntermediary" class="form-select" required>
+                <!-- Populated dynamically with VASP providers -->
+              </select>
+            </div>
+          </div>
+
+          <!-- Auto-Populated VASP Details Preview -->
+          <div id="intermediaryPreviewCard" class="intermediary-card-preview" style="display: none;">
+            <div>
+              <span class="text-slate-500 font-medium">Compliance & LEA Nodal Officer:</span>
+              <p class="font-bold text-slate-800" id="prevNodalOfficer">-</p>
+              <span class="text-slate-500 font-medium mt-2 block">Law Enforcement Contact Email:</span>
+              <p class="font-mono text-blue-900 font-semibold" id="prevEmail">-</p>
+            </div>
+            <div>
+              <span class="text-slate-500 font-medium">Statutory Mandate & SLA:</span>
+              <p class="font-bold text-emerald-800" id="prevSla">-</p>
+              <span class="text-slate-500 font-medium mt-2 block">Registered Office / Service Address:</span>
+              <p class="text-slate-700 text-xs" id="prevAddress">-</p>
+            </div>
+          </div>
+
+          <!-- Section 4: Dynamic Suspect Wallet / Deposit Identifiers Table -->
+          <div class="section-legend mt-6">
+            <span class="legend-icon">4</span>
+            <span>Schedule of Unlawful Digital Assets & Suspect Wallet Identifiers</span>
+          </div>
+
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-xs text-slate-600">Provide suspect cryptocurrency wallet addresses, transaction hashes (TxIDs), or exchange deposit identifiers:</span>
+            <span id="urlCountBadge" class="bg-blue-100 text-blue-900 text-xs font-bold px-2 py-0.5 rounded">1 Identifier(s)</span>
+          </div>
+
+          <div class="url-table-container">
+            <table class="url-table">
+              <thead>
+                <tr>
+                  <th style="width: 45%;">Suspect Wallet Address / Deposit Identifier / TxHash <span class="required-star">*</span></th>
+                  <th style="width: 25%;">Violation / Crime Typology</th>
+                  <th style="width: 20%;">Blockchain Identifier Type</th>
+                  <th style="width: 10%; text-align: center;">Action</th>
+                </tr>
+              </thead>
+              <tbody id="urlTableBody">
+                <tr>
+                  <td>
+                    <input type="text" class="form-input row-url font-mono" placeholder="e.g. 0x45271d4596ae638640f6becec56264ca98b77ceb or TNPeeaa..." required style="width: 100%;">
+                  </td>
+                  <td>
+                    <select class="form-select row-category" style="width: 100%;">
+                      <option value="Crypto Investment Fraud & Phishing" selected>Crypto Investment Fraud & Phishing</option>
+                      <option value="Ransomware Payment & Extortion">Ransomware Payment & Extortion</option>
+                      <option value="Laundering of Crime Proceeds">Laundering of Crime Proceeds</option>
+                      <option value="Darknet Marketplace Transaction">Darknet Marketplace Transaction</option>
+                      <option value="Terrorism Financing Ecosystem">Terrorism Financing Ecosystem</option>
+                      <option value="Impersonation & Fake VASP Scheme">Impersonation & Fake VASP Scheme</option>
+                      <option value="Unlawful P2P Off-Ramp / Bank Fraud">Unlawful P2P Off-Ramp / Bank Fraud</option>
+                      <option value="Other Cybercrime Violation">Other Cybercrime Violation</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select class="form-select row-type" style="width: 100%;">
+                      <option value="Suspect Unhosted Wallet" selected>Suspect Unhosted Wallet</option>
+                      <option value="Direct Deposit Address at VASP">Direct Deposit Address at VASP</option>
+                      <option value="Transaction Hash (TxID)">Transaction Hash (TxID)</option>
+                      <option value="Exchange Hot Wallet / Cluster">Exchange Hot Wallet / Cluster</option>
+                      <option value="Mixer / Tumbler Ingress">Mixer / Tumbler Ingress</option>
+                      <option value="DeFi Bridge Contract">DeFi Bridge Contract</option>
+                      <option value="Custodial Wallet UID">Custodial Wallet UID</option>
+                    </select>
+                  </td>
+                  <td style="text-align: center;">
+                    <button type="button" class="btn-delete-row" title="Remove row">&times; Remove</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <button type="button" class="btn-add-url" id="btnAddUrlRow">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+            <span>Add Another Suspect Wallet Address / Target Identifier</span>
+          </button>
+
+          <!-- Section 5: Grounds & Brief Facts -->
+          <div class="section-legend mt-6">
+            <span class="legend-icon">5</span>
+            <span>Grounds for Asset Freezing & Blockchain Investigation Brief</span>
+          </div>
+
+          <div class="form-field mb-4">
+            <label for="txtGrounds">
+              <span>Factual Summary of Unlawful Activity & Modus Operandi</span>
+              <span class="required-star">*</span>
+            </label>
+            <textarea id="txtGrounds" class="form-textarea" rows="3" placeholder="Describe the cybercrime investigation, blockchain tracing hops, suspect wallet activity, or victim fund trails necessitating immediate freezing..." required>During the course of official cybercrime investigation, the aforementioned cryptocurrency wallet addresses, transaction hashes, and deposit identifiers have been established as receiving/transmitting proceeds of cyber frauds and unlawful electronic transactions. Immediate disabling, freezing, and beneficial owner disclosure by the VASP is mandated under Indian law to prevent dissipation of criminal proceeds.</textarea>
+          </div>
+
+          <!-- Evidence Upload -->
+          <div class="form-field">
+            <label>Attach Blockchain Tracing Graph / Sahyog Kryptos Report / FIR Copy (PDF, JPG, PNG)</label>
+            <div class="file-dropzone" id="evidenceDropzone">
+              <input type="file" id="fileEvidenceInput" multiple accept=".pdf,.jpg,.jpeg,.png" style="display: none;">
+              <svg class="mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+              </svg>
+              <div class="text-xs font-semibold text-slate-700">Click or drag & drop evidence / Sahyog Kryptos report files here</div>
+              <div class="text-[10px] text-slate-500 mt-1">Supports PNG, JPG, PDF up to 25MB</div>
+            </div>
+            <div id="uploadedFilesList" class="mt-2"></div>
+          </div>
+
+          <!-- Section 6: Specific Statutory Relief to VASP -->
+          <div class="section-legend mt-6">
+            <span class="legend-icon">6</span>
+            <span>Specific Statutory Relief & Mandatory Actions Demanded from VASP</span>
+          </div>
+
+          <div class="checkbox-grid">
+            <label class="checkbox-item">
+              <input type="checkbox" class="relief-check" value="Immediate freezing / debit-freeze of destination deposit address and associated wallet assets" checked>
+              <span>Immediate freeze of destination deposit address & account balance</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" class="relief-check" value="Full KYC disclosure of beneficial owner (Aadhaar, PAN, Passport, Phone, Email)" checked>
+              <span>Full KYC disclosure of beneficial owner (Aadhaar, PAN, Phone, Email)</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" class="relief-check" value="IP access logs, device fingerprints & user-agents at deposit timestamp" checked>
+              <span>IP access logs, device fingerprints & user-agents at deposit timestamp</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" class="relief-check" value="Complete fiat off-ramp / P2P withdrawal records and linked Indian bank accounts" checked>
+              <span>Complete P2P / Fiat withdrawal trails & linked Indian bank accounts</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" class="relief-check" value="Preserve subscriber transaction logs and digital records for 180 days (Rule 3(1)(h))" checked>
+              <span>Preserve subscriber transaction logs & digital records for 180 days (Rule 3(1)(h))</span>
+            </label>
+          </div>
+
+          <!-- Section 7: Statutory Declaration -->
+          <div class="declaration-banner">
+            <input type="checkbox" id="chkDeclaration" required checked>
+            <label for="chkDeclaration" class="declaration-text">
+              <strong>STATUTORY OFFICER UNDERTAKING:</strong> I hereby certify and solemnly affirm that I am an authorized officer empowered by the Competent Authority under the Information Technology Act, 2000 and the Bharatiya Nagarik Suraksha Sanhita (BNSS). This requisition to the VASP is issued in public interest following preliminary verification of commission of unlawful acts. Transmitted notices carry legal statutory force under Indian Law.
+            </label>
+          </div>
+
+          <!-- Action Buttons Footer -->
+          <div class="form-actions-footer">
+            <button type="button" class="btn-secondary" id="btnResetForm">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+              <span>Reset</span>
+            </button>
+
+            <button type="button" class="btn-secondary" id="btnPreviewNotice">
+              <svg class="w-4 h-4 text-blue-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+              <span>Preview Official Notice</span>
+            </button>
+
+            <button type="submit" class="btn-primary" id="btnSubmitNotice">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              </svg>
+              <span>Dispatch Requisition to VASP</span>
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+
+    <!-- =========================================================================
+         TAB 2: NOTICE DISPATCH LEDGER & STATUS TRACKER
+         ========================================================================= -->
+    <div id="tabLedger" class="tab-content-panel" style="display: none;">
+      <div class="form-card">
+        <div class="card-header-bar">
+          <h2>
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+            </svg>
+            <span>Notice Dispatch Ledger & VASP Response Log</span>
+          </h2>
+          <span class="text-xs text-blue-100">Live Secure Audit Trail</span>
+        </div>
+
+        <div class="card-body-section">
+          <div class="ledger-filter-bar">
+            <input type="text" id="txtSearchLedger" class="search-ledger-input" placeholder="Search by Notice ID, VASP, or Wallet Address...">
+            <div class="flex items-center gap-2 text-xs text-slate-600">
+              <span class="w-3 h-3 rounded-full bg-amber-400 inline-block"></span> Dispatched
+              <span class="w-3 h-3 rounded-full bg-sky-500 inline-block ml-2"></span> Acknowledged
+              <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block ml-2"></span> Asset Frozen / KYC Received
+            </div>
+          </div>
+
+          <div class="url-table-container">
+            <table class="url-table">
+              <thead>
+                <tr>
+                  <th>Notice Ref No.</th>
+                  <th>Date & Time (IST)</th>
+                  <th>Target VASP</th>
+                  <th>Suspect Wallet & Typology</th>
+                  <th>SLA Window</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="ledgerTableBody">
+                <!-- Dynamically rendered by js/send-notice.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================================
+         TAB 3: VASP DIRECTORY
+         ========================================================================= -->
+    <div id="tabDirectory" class="tab-content-panel" style="display: none;">
+      <div class="form-card">
+        <div class="card-header-bar">
+          <h2>
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+            <span>Virtual Asset Service Providers (VASPs) - LEA Compliance Desks</span>
+          </h2>
+          <span class="text-xs text-blue-100">FIU-IND Registered & Global Exchanges</span>
+        </div>
+
+        <div class="card-body-section">
+          <p class="text-xs text-slate-600 mb-4">
+            Under Indian PMLA guidelines and IT Act rules, registered Virtual Asset Service Providers (VASPs) maintain dedicated 24x7 Law Enforcement Nodal Desks for asset freezing and information disclosure.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="vaspCardsGrid">
+            <!-- Dynamically populated from data/intermediaries.json -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- =========================================================================
+       MODAL: FORMAL GOVERNMENT OF INDIA STATUTORY NOTICE TO VASP
+       ========================================================================= -->
+  <div id="noticePreviewModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-amber-300" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1.323l3.954 1.582 1.599-.8a1 1 0 01.894 1.79l-1.233.616 1.738 5.42a1 1 0 01-.285 1.05A3.989 3.989 0 0115 15a3.989 3.989 0 01-2.667-1.019 1 1 0 01-.285-1.05l1.715-5.349L11 6.477V16h2a1 1 0 110 2H7a1 1 0 110-2h2V6.477L6.237 7.582l1.715 5.349a1 1 0 01-.285 1.05A3.989 3.989 0 015 15a3.989 3.989 0 01-2.667-1.019 1 1 0 01-.285-1.05l1.738-5.42-1.233-.617a1 1 0 01.894-1.788l1.599.799L9 4.323V3a1 1 0 011-1z" clip-rule="evenodd" />
+          </svg>
+          <h3>Official Statutory Requisition Memo Preview (VASP Notice)</h3>
+        </div>
+        <button type="button" class="modal-close-btn" id="btnClosePreviewModalX">&times;</button>
+      </div>
+
+      <div class="modal-content-scroll" id="modalMemoContent">
+        <!-- Rendered dynamically by js/send-notice.js -->
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" id="btnPrintNotice">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+          </svg>
+          <span>Print / Save PDF</span>
+        </button>
+        <button type="button" class="btn-secondary" id="btnClosePreviewModal">Close Preview</button>
+        <button type="button" class="btn-primary" id="btnDispatchFromModal">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+          </svg>
+          <span>Confirm & Dispatch Requisition</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Official Footer Strip -->
+  <footer class="footer-strip"></footer>
+
+  <!-- App Business Logic -->
+  <script src="js/send-notice.js"></script>
+</body>
+</html>
